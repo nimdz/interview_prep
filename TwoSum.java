@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class TwoSum {
 
@@ -49,6 +50,41 @@ public class TwoSum {
         return '_';
     }
 
+    // reverse string
+    public static char[] reverse(String str) {
+        char[] arr = str.toCharArray();
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            char temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        return arr;
+    }
+
+    public static int[] removeduplicates(int[] arr) {
+
+        HashSet<Integer> unique = new HashSet<>();
+
+        for (int num : arr) {
+            unique.add(num);
+        }
+
+        int[] result = new int[unique.size()];
+        int index = 0;
+
+        for (int num : unique) {
+            result[index++] = num;
+        }
+        return result;
+    }
+
     public static void reverse(int[] arr) {
 
         int left = 0;
@@ -74,9 +110,19 @@ public class TwoSum {
         int[] arr = { 1, 2, 3, 4, 5 };
         reverse(arr);
 
-        for (int num : arr) {
+        int[] arr1 = { 1, 2, 2, 2, 3, 3, 4, 5, 5, 8 };
+
+        int[] noDuplicates = removeduplicates(arr1);
+
+        for (int num : noDuplicates) {
             System.out.print(num + " ");
         }
 
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        String s = "hello";
+        char[] reversed = reverse(s);
+        System.out.println(new String(reversed));
     }
 }
